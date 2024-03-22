@@ -1,0 +1,58 @@
+version: '3'
+services:
+  ml_server:
+    build:
+      context: ./ml_server
+    ports:
+      - "5001:5001"
+    links:
+      - mongodb:mongadb
+    depends_on:
+      - mongodb
+      - mysql
+    volumes:
+      - ./ml_server/data:/app/data
+  web_server:
+    build:
+      context: ./web_server
+    ports:
+      - "80:80"
+    depends_on:
+      - ml_server
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongodb_data:/data/db
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: ml_data
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  ngrok:
+    image: ngrok/ngrok:latest
+    command: ["http", "web_server:80"]
+    environment:
+      - NGROK_AUTHTOKEN=2ct9eQRrHDLIRLnPGJxsteOQIjI_38zkohTp5H3j9a5HJK1yz
+    ports:
+      - "4040:4040"
+volumes:
+  mongodb_data:
+  mysql_data:

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic - ML Model Input</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <form action="/predict" method="post">
+        <h1>Titanic - ML Model Input</h1>
+        <div class="input-group">
+            <label for="PassengerId">PassengerId:</label>
+            <input type="text" name="PassengerId">
+        </div>
+        <div class="input-group">
+            <label for="Pclass">Pclass:</label>
+            <input type="text" name="Pclass">
+        </div>
+        <div class="input-group">
+            <label for="Name">Name:</label>
+            <input type="text" name="Name">
+        </div>
+        <div class="input-group">
+            <label for="Sex">Sex:</label>
+            <input type="text" name="Sex">
+        </div>
+        <div class="input-group">
+            <label for="Age">Age:</label>
+            <input type="text" name="Age">
+        </div>
+        <div class="input-group">
+            <label for="SibSp">SibSp:</label>
+            <input type="text" name="SibSp">
+        </div>
+        <div class="input-group">
+            <label for="Parch">Parch:</label>
+            <input type="text" name="Parch">
+        </div>
+        <div class="input-group">
+            <label for="Ticket">Ticket:</label>
+            <input type="text" name="Ticket">
+        </div>
+        <div class="input-group">
+            <label for="Fare">Fare:</label>
+            <input type="text" name="Fare">
+        </div>
+        <div class="input-group">
+            <label for="Cabin">Cabin:</label>
+            <input type="text" name="Cabin">
+        </div>
+        <div class="input-group">
+            <label for="Embarked">Embarked:</label>
+            <input type="text" name="Embarked">
+        </div>
+        <div class="input-group">
+            <label for="model">Select Model Type:</label>
+            <select name="model" id="model">
+                <option value="model_lr">Logistic Regression</option>
+                <option value="model_rf">Random Forest</option>
+                <option value="model_SVC">Support Vector Classifier</option>
+                <option value="model_xgb">XGBoost Classifier</option>
+            </select>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+name: ml_server
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - flask=2.0.1
+  - pymongo<3.12.0
+  - Werkzeug=2.2.2
+  - mysql-connector-python=8.0.28
+  - scikit-learn=1.3.0
+  - pandas=2.1.4
+  - imbalanced-learn=0.11.0   
+  - joblib=1.2.0
+  - xgboost=1.7.3

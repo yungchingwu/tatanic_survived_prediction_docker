@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Model Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="center">
+        <div class="container">
+            <h1>ML Model Prediction Result</h1>
+            <div class="prediction-info">
+                <h2>Input Data</h2>
+                <ul>
+                    {% for key, value in result['input_data']['features'].items() %}
+                    <li>{{ key }}: {{ value }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="prediction-info">
+                <h2>Selected Model Type</h2>
+                <p>{{ result['model_type'] }}</p>
+            </div>
+            <div class="prediction-info">
+                <h2>Predicted Result</h2>
+                <p>{{ result['prediction'] }}</p>
+            </div>
+            <div class="prediction-info">
+                <h2>Predicted Probability</h2>
+                <p>{{ result['prediction_prob'] }}</p>
+            </div>
+            <a href="{{ url_for('index') }}" class="back-button">Back</a>
+        </div>
+    </div>
+</body>
+</html>
